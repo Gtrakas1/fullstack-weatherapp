@@ -65,7 +65,6 @@ app.get('/hourly', function (req, res) {
                     }
 
                     )
-                    console.log(hourlyData[3].weather)
                     // const icon = weatherData.hourly.weather[0].icon
                     // const iconUrl = "http://openweathermap.org/img/wn/" + icon + "@2x.png"
                     // const temp = weatherData.hourly.temp;
@@ -75,6 +74,40 @@ app.get('/hourly', function (req, res) {
                         // query: query,
                         // icon: icon,
                         hourlyData: hourlyData
+                        //temp: temp
+
+                    })
+                })
+            })
+        })
+    })
+})
+
+app.get('/daily', function (req, res) {
+    http.get(geoUrl, function (respond) {
+        respond.on("data", function (data) {
+            const locationData = JSON.parse(data);
+            const currentWeatherUrl = onecallUrl + '?lat=' + locationData.lat + '&lon=' + locationData.lon + '&units=' + units + '&exclude=current,minutely,hourly,alerts&appid=' + apiKey
+            https.get(currentWeatherUrl, function (response) {
+                response.on("data", function (wdata) {
+                    const weatherData = JSON.parse(wdata)
+
+                    const dailyData = weatherData.daily.map(daily => {
+                        return daily;
+                    })
+
+                    // const icon = weatherData.hourly.weather[0].icon
+                    // const iconUrl = "http://openweathermap.org/img/wn/" + icon + "@2x.png"
+                    // const temp = weatherData.hourly.temp;
+                    // const descritption = weatherData.hourly.weather[0].description
+                    const tempData = weatherData.daily.map(daily => {
+                        return daily.temp
+                    })
+                    console.log(tempData)
+                    res.render('daily', {
+                        // query: query,
+                        dailyData: dailyData,
+                        tempData: tempData
                         //temp: temp
 
                     })
@@ -116,6 +149,7 @@ app.post('/', function (req, res) {
 
 
 })
+
 
 
 app.listen(3000, function () {
