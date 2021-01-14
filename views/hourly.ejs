@@ -1,0 +1,16 @@
+<%- include('header'); -%>
+    <% hourlyData.forEach(hour=>{ %>
+        <h1>
+            Temp: <%= hour.temp%>
+        </h1>
+        <p>The hourly weather is <% hour.weather.forEach(weather=>{%>
+                <%=weather.description %>
+        </p>
+        <img src="http://openweathermap.org/img/wn/<%=weather.icon %>@2x.png">
+        <%}) %>
+
+            <%})%>
+
+
+
+                <%- include('footer'); -%>
