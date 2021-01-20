@@ -1,14 +1,15 @@
 <%- include('header'); -%>
 
-    <% dailyData.forEach(daily=>{ %>
-        <h1>Temp:<%= daily.temp.day%>
-        </h1>
-        <p>The daily weather is <% daily.weather.forEach(weather=>{%>
-                <%=weather.description %>
-        </p>
-        <img src="http://openweathermap.org/img/wn/<%=weather.icon %>@2x.png">
-        <%}) %>
+    <div class="daily-container">
+        <% dailyData.forEach(daily=>{ %>
+            <h1>Temp: <%= Math.ceil(daily.main.temp)%>
+            </h1>
+            <p>The daily weather is <% daily.weather.forEach(weather=>{%>
+                    <%=weather.description %>
+            </p>
+            <img src="http://openweathermap.org/img/wn/<%=weather.icon %>@2x.png">
+            <%}) %>
 
-            <%})%>
-
-                <%- include('footer'); -%>
+                <%})%>
+    </div>
+    <%- include('footer'); -%>

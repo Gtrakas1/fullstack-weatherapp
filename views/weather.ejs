@@ -1,11 +1,14 @@
 <%- include('header'); -%>
-    <form action="/" method="post">
-        <label for="cityInput">cityInput: </label>
-        <input id="cityInput" type="text" name="cityName">
-        <button type="submit">Go</button>
+    <div class="current-container">
+        <form action="/" method="post">
+            <label for="cityInput">cityInput: </label>
+            <input id="cityInput" type="text" name="cityName">
+            <button type="submit">Go</button>
 
-        <p>The weather currently is <%= description %>
-        </p>
-        <h1>The temperature in <%= query %> is <%= temp %> degrees Celcius</h1>
-        <img src="http://openweathermap.org/img/wn/<%=icon %>@2x.png" />
-        <%- include('footer'); -%>
+            <p>The weather currently is <%= description %>
+            </p>
+            <h1>The temperature in <%= query %> is <%= temp %> degrees Celcius</h1>
+            <img src="http://openweathermap.org/img/wn/<%=icon %>@2x.png" />
+
+    </div>
+    <%- include('footer'); -%>
